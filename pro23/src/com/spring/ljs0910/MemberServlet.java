@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/mem.do")
+@WebServlet("/mem0911.do")
 public class MemberServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doHandle(request, response);
@@ -28,7 +28,7 @@ public class MemberServlet extends HttpServlet {
 		List<MemberVO> membersList = dao.selectAllMemberList();
 		//List<HashMap<String, String>> membersList = dao.selectAllMemberList();
 		request.setAttribute("membersList", membersList);
-		RequestDispatcher dispatch = request.getRequestDispatcher("test01/listMembers.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("test01/listMembersLjs0910.jsp");
 		dispatch.forward(request, response);
 	}
 }

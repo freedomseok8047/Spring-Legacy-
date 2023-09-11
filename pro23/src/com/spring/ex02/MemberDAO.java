@@ -40,5 +40,44 @@ public class MemberDAO {
 		return pwd;
 	}
 
-
+	//selectDate() : 데이터 조회 해보기
+	public String  selectDate() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		// 받는 날짜 변수,
+		String testDate = session.selectOne("mapper.member.selectDate");
+		return testDate;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

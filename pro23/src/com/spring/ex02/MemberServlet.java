@@ -24,11 +24,17 @@ public class MemberServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		MemberDAO dao = new MemberDAO();
 		//String name = dao.selectName();
+		String name = dao.selectName();
 		int pwd = dao.selectPwd();
+		
+		//더미 디비 아이디 a3 등록일 가져오기.
+		//selectDate() 없음 -> 임의로 이름을 설정  
+		String testDate = dao.selectDate();
 		PrintWriter pw = response.getWriter();
+	
 		pw.write("<script>");
-		//pw.write("alert(' �̸�: " + name +"');");
-		pw.write("alert(' ��й�ȣ : "+ pwd+"');");
+		pw.write("alert(' 이름: " + name +"');");
+		pw.write("alert('비밀번호 :"+ pwd+"');");
 		pw.write("</script>");
 
 	}
