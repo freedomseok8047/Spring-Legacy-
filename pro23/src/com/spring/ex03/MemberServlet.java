@@ -45,8 +45,17 @@ public class MemberServlet extends HttpServlet {
 			nextPage = "test02/listMembers.jsp";
 		} else if (action.equals("selectMemberByName")) {
 			String name = request.getParameter("value");
+			System.out.println("확인1 : 넘어온 키워드 값 value 확인 " + name);
 			List<MemberVO> membersList = dao.selectMemberByName(name);
 			request.setAttribute("membersList", membersList);
+			nextPage = "test02/listMembers.jsp";
+		} else if (action.equals("selectMemberByEmail")) {
+			String email = request.getParameter("value");
+			System.out.println("확인1 : 넘어온 키워드 값 value 확인 " + email);
+			List<MemberVO> membersList = dao.selectMemberByEmail(email);
+			
+			request.setAttribute("membersList", membersList);
+			
 			nextPage = "test02/listMembers.jsp";
 		}
 		

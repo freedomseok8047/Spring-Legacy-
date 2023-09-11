@@ -52,8 +52,19 @@ public class MemberDAO {
 	public List<MemberVO> selectMemberByName(String name) {
 	sqlMapper = getInstance();
 	SqlSession session = sqlMapper.openSession();
+	System.out.println("확인2 : 넘어온 키워드 값 value 확인 " + name);
 	List<MemberVO> membersList = null;
 	membersList= session.selectList("mapper.member.selectMemberByName", name);
+	return membersList;
+	}
+	
+	public List<MemberVO> selectMemberByEmail(String email) {
+	sqlMapper = getInstance();
+	SqlSession session = sqlMapper.openSession();
+	System.out.println("확인2 : 넘어온 키워드 값 value 확인 " + email);
+	List<MemberVO> membersList = null;
+	membersList = session.selectList("mapper.member.selectMemberByEmail", email);
+	System.out.println("확인3 : 넘어온 키워드 값 value 확인 / [역방향 시작] " + email);
 	return membersList;
 	}
 

@@ -72,6 +72,14 @@
       ]]>
     </select>
     
+    <select id="selectMemberByEmail" resultMap="memResult"  parameterType="String" >
+      <![CDATA[
+         select * from t_member
+         where
+         email = #{email}			
+      ]]>
+    </select>
+    
      <insert id="insertMember"  parameterType="memberVO">
 		<![CDATA[
 		 insert into t_member(id,pwd, name, email)
