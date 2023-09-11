@@ -5,9 +5,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 <configuration>
    <typeAliases>
-      <typeAlias type="com.spring.ex01.MemberVO" alias="memberVO"/>
+   <!-- 데이터의 결과를 한번에 담는 모델 클래스  -->
+      <typeAlias type="com.spring.ljs0910.MemberVO" alias="memberVO"/>
    </typeAliases>
 
+<!-- 디비에 연결을 위한 기본 설정 -->
    <environments default="development">
      <environment id="development">
         <transactionManager type="JDBC"/>
@@ -19,7 +21,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         </dataSource>
      </environment>
    </environments>
-   
+
+<!-- 실제, 마이바티스 장점이 sql 문장을 코드와 분리를 해서 관리하는 부분. -->
+<!-- sql 문장을 모아둔 설정 파일 -->
 <mappers>
    <mapper resource="mybatis/mappers/member.xml"/>
 </mappers>

@@ -1,4 +1,4 @@
-package com.spring.ex01;
+package com.spring.ljs0910;
 
 import java.sql.Date;
 
