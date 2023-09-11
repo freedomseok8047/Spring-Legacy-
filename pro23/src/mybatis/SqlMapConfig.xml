@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
    <typeAliases>
    <!-- 데이터의 결과를 한번에 담는 모델 클래스  -->
-      <typeAlias type="com.spring.ljs0910.MemberVO" alias="memberVO"/>
+      <typeAlias type="com.spring.ex01.MemberVO" alias="memberVO"/>
    </typeAliases>
 
 <!-- 디비에 연결을 위한 기본 설정 -->

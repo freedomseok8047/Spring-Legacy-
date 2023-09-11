@@ -27,6 +27,8 @@ public class MemberServlet extends HttpServlet {
 		String name = dao.selectName();
 		int pwd = dao.selectPwd();
 		
+		
+		
 		//더미 디비 아이디 a3 등록일 가져오기.
 		//selectDate() 없음 -> 임의로 이름을 설정  
 		String testDate = dao.selectDate();
@@ -35,6 +37,7 @@ public class MemberServlet extends HttpServlet {
 		pw.write("<script>");
 		pw.write("alert(' 이름: " + name +"');");
 		pw.write("alert('비밀번호 :"+ pwd+"');");
+		pw.write("alert('등록일 :"+ testDate+"');");
 		pw.write("</script>");
 
 	}

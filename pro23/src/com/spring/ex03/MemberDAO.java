@@ -49,6 +49,12 @@ public class MemberDAO {
 	return membersList;
 	}
 
-
+	public List<MemberVO> selectMemberByName(String name) {
+	sqlMapper = getInstance();
+	SqlSession session = sqlMapper.openSession();
+	List<MemberVO> membersList = null;
+	membersList= session.selectList("mapper.member.selectMemberByName", name);
+	return membersList;
+	}
 
 }

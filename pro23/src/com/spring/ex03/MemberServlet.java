@@ -43,6 +43,11 @@ public class MemberServlet extends HttpServlet {
 			List<MemberVO> membersList = dao.selectMemberByPwd(pwd);
 			request.setAttribute("membersList", membersList);
 			nextPage = "test02/listMembers.jsp";
+		} else if (action.equals("selectMemberByName")) {
+			String name = request.getParameter("value");
+			List<MemberVO> membersList = dao.selectMemberByName(name);
+			request.setAttribute("membersList", membersList);
+			nextPage = "test02/listMembers.jsp";
 		}
 		
 		
