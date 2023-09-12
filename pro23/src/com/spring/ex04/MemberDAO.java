@@ -50,10 +50,14 @@ public class MemberDAO {
 	return membersList;
 	}
 
+	//실제 2번째 동네에서 하는 작업 , 오늘의 추가 작업 
+	//포인느, 넘어온 데이터의 타입 문자열 아니고 -> 인스턴스 (객체) 참조형이다.
 	public int insertMember(MemberVO memberVO) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
+		//상태변수 , 값이 추가되면 ,상태를 표시하는 변수
 		int result = 0;
+		//디비에 sql 문장을 넘기는 업무, 3번째 member.xml에 넘김
 		result = session.insert("mapper.member.insertMember", memberVO);
 		session.commit();
 		return result;
