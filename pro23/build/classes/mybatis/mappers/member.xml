@@ -79,7 +79,8 @@
          email = #{email}			
       ]]>
     </select>
-    
+     <!-- 실제 데이터 추가하는 작업, 현제 동네 3번째, 
+     업무 : 디비에 실제 데이터를 입력하는 sql 문장을 관리하는 일.  -->
      <insert id="insertMember"  parameterType="memberVO">
 		<![CDATA[
 		 insert into t_member(id,pwd, name, email)

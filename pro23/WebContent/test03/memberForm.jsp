@@ -24,7 +24,9 @@
 <!-- get post 방식의 차이점 : get 길이제한, 보안상 url 주소다 남음. --> 
 <!-- 이런 부분 고려해서 작업, 회원가입은 id pw 등 민감정보 있어 보안상 post로 작업! -->
 <!-- 뷰 -> 서버에 전달 -> 수신호를 action이라는 문자열에 담아서 서버에 전달 -->
-<!-- action=insertMember -->
+<!-- action=insertMember2 -->
+<!-- 데이터를 인스턴스에 저장하는 방법에 따라 = 서블릿과 DAO에서 Hashmap 사용여부에 따라  -->
+<!-- action에 insertMember2일지 아닐지 결정 -->
 	<form method="post"   action="${contextPath}/mem4.do?action=insertMember">
 	<h1  class="text_center">회원 가입창</h1>
 	<table  align="center">
@@ -46,6 +48,12 @@
 	       <td width="200"><p align="right">이메일</td>
 	       <td width="400"><p><input type="text" name="email"></td>
 	    </tr>
+	    
+	   <!--  <tr>
+	       <td width="200"><p align="right">가입일</td>
+	       <td width="400"><p><input type="text" name="email"></td>
+	    </tr> -->
+	    
 	    <tr>
 	       <td width="200"><p>&nbsp;</p></td>
 	       <td width="400"><input type="submit" value="가입하기"><input type="reset" value="다시입력"></td>

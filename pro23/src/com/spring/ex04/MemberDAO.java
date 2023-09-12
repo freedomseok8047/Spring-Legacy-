@@ -49,7 +49,15 @@ public class MemberDAO {
 	membersList= session.selectList("mapper.member.selectMemberByPwd", pwd);
 	return membersList;
 	}
-
+	
+	public List<MemberVO> selectMemberByDate(String date) {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		List<MemberVO> membersList = null;
+		membersList= session.selectList("mapper.member.selectMemberByDate", date);
+		return membersList;
+		}
+	
 	//실제 2번째 동네에서 하는 작업 , 오늘의 추가 작업 
 	//포인느, 넘어온 데이터의 타입 문자열 아니고 -> 인스턴스 (객체) 참조형이다.
 	public int insertMember(MemberVO memberVO) {

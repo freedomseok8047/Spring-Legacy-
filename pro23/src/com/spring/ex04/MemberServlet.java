@@ -28,7 +28,7 @@ public class MemberServlet extends HttpServlet {
 
 	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		//2nd 동네으 기능을 사용하기 위한 인스턴스
+		//2nd 동네의 기능을 사용하기 위한 인스턴스
 		MemberDAO dao = new MemberDAO();
 		//클라이언트로 부터 받은 정보를 하나의 모델 클래스에 담기 위한 임시 인스턴스 
 		MemberVO memberVO = new MemberVO();
@@ -37,24 +37,32 @@ public class MemberServlet extends HttpServlet {
 		//디비에 원하는 기능을 다 수행후, 결과를 어디에 보여줄것인지르 정하는 뷰설정 부분
 		String nextPage = "";
 		
-		
+		// 앞단에서 넘어온 행위를 분기문. 조회, 입력, 검색, 수정, 삭제 등등. 
+		// 검색
 		if (action == null || action.equals("listMembers")) {
 			List<MemberVO> membersList = dao.selectAllMemberList();
 			request.setAttribute("membersList", membersList);
 			nextPage = "test03/listMembers.jsp";
+			// 아이디 조건으로 검색.
 		} else if (action.equals("selectMemberById")) {
 			String id = request.getParameter("value");
 			memberVO = dao.selectMemberById(id);
 			request.setAttribute("member", memberVO);
 			nextPage = "test03/memberInfo.jsp";
-			
+			// 패스워드 조건으로 검색.
 		} else if (action.equals("selectMemberByPwd")) {
 			int pwd = Integer.parseInt(request.getParameter("value"));
 			List<MemberVO> membersList = dao.selectMemberByPwd(pwd);
 			request.setAttribute("membersList", membersList);
 			nextPage = "test03/listMembers.jsp";
-			// 4가지 정보를 입력하는 기능 
-		}else if(action.equals("insertMember")) {
+			
+		}else if (action.equals("selectMemberByDate")) {
+			String date = request.getParameter("value");
+			List<MemberVO> membersList = dao.selectMemberByDate(date);
+			request.setAttribute("membersList", membersList);
+			nextPage = "test03/listMembers.jsp";
+		}// 4가지 정보를 입력하는 기능 
+		else if(action.equals("insertMember")) {
 			String id=request.getParameter("id");
             String pwd=request.getParameter("pwd");
             String name=request.getParameter("name");
@@ -64,11 +72,13 @@ public class MemberServlet extends HttpServlet {
             memberVO.setPwd(pwd);
             memberVO.setName(name);
             memberVO.setEmail(email);
+            memberVO.getJoinDate();
             //실제로 다른 동네에 외주 맡기기기, 디비에 저장하는 기능은 다른 동네가 할일 
             dao.insertMember(memberVO);
 			/* 다른 동네에 외주 맡겨서, 디비(오라클) 입력을 다하고 돌아온 후 결과 뷰를 할당하는 내용 */
             nextPage="/mem4.do?action=listMembers";
-       }else if(action.equals("insertMember")) {
+       }else if(action.equals("insertMember2")) {
+    	   // 똑같은 구조인데, 타입만 HashMap 타입. 
            String id=request.getParameter("id");
            String pwd=request.getParameter("pwd");
            String name=request.getParameter("name");
