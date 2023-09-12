@@ -16,7 +16,7 @@
        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
       <property name="viewClass" 
                           value="org.springframework.web.servlet.view.JstlView"/>
-      <property name="prefix" value="/WEB-INF/views/member/" /> 
+      <property name="prefix" value="/WEB-INF/views/member_ljs230912/" /> 
       <property name="suffix" value=".jsp"/>
    </bean>
    <!-- 동네 1번 , 클라이언트로 부터 동작 명력을 받아서 처리하는 곳,
@@ -33,21 +33,22 @@
    class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver" >
       <property  name="mappings" >
         <props>
-          <prop key="/member/listMembers.do" >listMembers</prop>
-          <prop key="/member/addMember.do" >addMember</prop>
-          <prop key="/member/removeMember.do">removeMember</prop>
-          <prop key="/member/updateMember.do">updateMember</prop>
-          <prop key="/member/memberForm.do" >form</prop>
+          <prop key="/member_ljs230912/listMembers.do" >listMembers</prop>
+          <prop key="/member_ljs230912/addMember.do" >addMember</prop>
+          <prop key="/member_ljs230912/removeMember.do">removeMember</prop>
+          <prop key="/member_ljs230912/modMember.do">modMember</prop>
+          <prop key="/member_ljs230912/updateMember.do">updateMember</prop>
+          <prop key="/member_ljs230912/memberForm.do" >form</prop>
        </props>
       </property>
    </bean>
    
-   <!-- /member/*.do 확장자, 액션과 비슷한 구조  -->
+   <!-- /member_ljs230912/*.do 확장자, 액션과 비슷한 구조  -->
    <bean id="memberUrlMapping"
        class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
       <property name="mappings">
          <props>
-            <prop key="/member/*.do">memberController</prop>
+            <prop key="/member_ljs230912/*.do">memberController</prop>
          </props>
       </property>
    </bean>

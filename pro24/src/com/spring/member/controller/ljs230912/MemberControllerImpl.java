@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
@@ -50,7 +51,7 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 		bind(request, memberVO);
 		int result = 0;
 		result = memberService.addMember(memberVO);
-		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
+		ModelAndView mav = new ModelAndView("redirect:/member_ljs230912/listMembers.do");
 		return mav;
 	}
 	
@@ -59,16 +60,26 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 		request.setCharacterEncoding("utf-8");
 		String id=request.getParameter("id");
 		memberService.removeMember(id);
-		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
+		ModelAndView mav = new ModelAndView("redirect:/member_ljs230912/listMembers.do");
 		return mav;
 	}
+	
+	@Override
+	public ModelAndView modMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String id=request.getParameter("id");
+		request.setAttribute("user_id", id);
+		ModelAndView mav = new ModelAndView("redirect:/member_ljs230912/modMember.jsp");
+		return mav;	
+	}
+
 	
 	@Override
 	public ModelAndView updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String id=request.getParameter("id");
 		memberService.updateMember(id);
-		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
+		ModelAndView mav = new ModelAndView("redirect:/member_ljs230912/listMembers.do");
 		return mav;
 	}	
 
@@ -112,6 +123,5 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 		}
 		return fileName;
 	}
-
 
 }

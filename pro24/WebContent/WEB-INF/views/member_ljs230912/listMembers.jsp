@@ -33,11 +33,11 @@
       <td>${member.name}</td>
       <td>${member.email}</td>
       <td>${member.joinDate}</td>
-      <td><a href="${contextPath}/member/removeMember.do?id=${member.id }">삭제하기</a></td>
-      <td><a href="${contextPath}/member/updateMember.do?id=${member.id }">수정하기</a></td>
+      <td><a href="${contextPath}/member_ljs230912/removeMember.do?id=${member.id}">삭제하기</a></td>
+      <td><a href="${contextPath}/member_ljs230912/modMember.do?id=${member.id}">수정하기</a></td>
     </tr>
   </c:forEach>   
 </table>
-<a  href="${contextPath}/member/memberForm.do"><h1 style="text-align:center">회원가입</h1></a>
+<a  href="${contextPath}/member_ljs230912/memberForm.do"><h1 style="text-align:center">회원가입</h1></a>
 </body>
 </html>
