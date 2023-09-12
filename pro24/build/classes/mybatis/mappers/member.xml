@@ -30,21 +30,14 @@
 	<select id="selectName" resultType="String">
     <![CDATA[
 	select name from t_member
-	where id = 'a1'			
+	where id = 'hong'			
     ]]>
 	</select>
 	
 	<select id="selectPwd" resultType="int" >
 	  <![CDATA[ 
 	    select pwd from t_member 
-	    where id = 'a2'
-	 ]]>
-	 </select> 
-	 
-	 <select id="selectDate" resultType="String" >
-	  <![CDATA[ 
-	    select pwd from t_member 
-	    where id = 'a3'
+	    where id = 'hong'
 	 ]]>
 	 </select> 
 	 
@@ -64,34 +57,17 @@
       ]]>
     </select>
     
-    <select id="selectMemberByName" resultMap="memResult"  parameterType="String" >
-      <![CDATA[
-         select * from t_member
-         where
-         name = #{name}			
-      ]]>
-    </select>
-    
-    <select id="selectMemberByEmail" resultMap="memResult"  parameterType="String" >
-      <![CDATA[
-         select * from t_member
-         where
-         email = #{email}			
-      ]]>
-    </select>
-     <!-- 실제 데이터 추가하는 작업, 현제 동네 3번째, 
-     업무 : 디비에 실제 데이터를 입력하는 sql 문장을 관리하는 일.  -->
      <insert id="insertMember"  parameterType="memberVO">
 		<![CDATA[
-		 insert into t_member(id,pwd, name, email, joinDate)
-		 values(#{id}, #{pwd}, #{name}, #{email}, sysdate)
+		 insert into t_member(id,pwd, name, email)
+		 values(#{id}, #{pwd}, #{name}, #{email})
 		]]>      
 	</insert>
 	
-	<insert id="insertMember2"  parameterType="java.util.Map">
+	<insert id="insertMember2"  parameterType="java.util.HashMap">
 		<![CDATA[
-			 insert into t_member(id,pwd, name, email, joinDate)
-			 values(#{id}, #{pwd}, #{name}, #{email}, sysdate)
+			 insert into t_member(id,pwd, name, email)
+			 values(#{id}, #{pwd}, #{name}, #{email})
 		]]>      
    </insert>
    
@@ -167,13 +143,12 @@
       ]]>
       
       where name in
-      <!-- item 목록 안에 요소, abc1 abc2 abc3 들어있고 반복문으로 하나씨 꺼내서 나열 -->
       <foreach item="item" collection="list" open="(" separator="," close=")" >
          #{item}
       </foreach>
       order by joinDate desc
    </select>
-   <!-- 한번에 여러 임시 데이터 넣는 예제 -->
+   
    <insert id="foreachInsert"  parameterType="java.util.Map">
       <foreach item="item"  collection="list"   open="INSERT ALL" separator=" " close="SELECT * FROM DUAL" >
           INTO  t_member(id, pwd, name, email)
@@ -184,15 +159,6 @@
       </foreach>
    </insert>
    
-   <!-- 
-    <select id="selectLike" resultMap="memResult"  parameterType="String" >
-      <![CDATA[
-         select * from t_member
-         where
-         name like '%'#{name}'%'		
-      ]]>
-    </select>
-     -->
    <!--  like 검색 -->
    <select id="selectLike" resultMap="memResult"  parameterType="String" >
       <![CDATA[

@@ -20,12 +20,12 @@
 </style>
 </head>
 <body>
-	<form method="post"   action="${contextPath}/mem4.do?action=updateMember">
+	<form method="post"   action="${contextPath}/member/modMember.do">
 	<h1  class="text_center">회원 정보 수정창</h1>
 	<table  align="center">
 	   <tr>
 	      <td width="200"><p align="right">아이디</td>
-	      <td width="400"><input type="text" name="id" value =${user_id}></td>
+	      <td width="400"><input type="text" name="id"></td>
 	   </tr>
 	   <tr>
 	      <td width="200"><p align="right">비밀번호</td>
