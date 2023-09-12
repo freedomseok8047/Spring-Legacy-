@@ -1,4 +1,4 @@
-package com.spring.member.service;
+package com.spring.member.service.ljs230912;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.spring.member.dao.MemberDAO;
+import com.spring.member.dao.ljs230912.MemberDAO;
 import com.spring.member.vo.MemberVO;
 
 /*@Transactional(propagation=Propagation.REQUIRED) */
@@ -38,4 +38,9 @@ public class MemberServiceImpl  implements MemberService{
 	   public int removeMember(String id) throws DataAccessException {
 	      return memberDAO.deleteMember(id);
 	   }
+
+	@Override
+	public int updateMember(String id) throws DataAccessException {
+		return memberDAO.updateMember(id);
+	}
 }

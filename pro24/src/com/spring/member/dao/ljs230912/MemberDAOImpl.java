@@ -1,4 +1,4 @@
-package com.spring.member.dao;
+package com.spring.member.dao.ljs230912;
 
 import java.util.List;
 
@@ -33,6 +33,12 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int deleteMember(String id) throws DataAccessException {
 		int result =  sqlSession.delete("mapper.member.deleteMember", id);
+		return result;
+	}
+
+	@Override
+	public int updateMember(String id) throws DataAccessException {
+		int result =  sqlSession.update("mapper.member.updateMember", id);
 		return result;
 	}
 }

@@ -1,4 +1,4 @@
-package com.spring.member.controller;
+package com.spring.member.controller.ljs230912;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,5 +14,5 @@ public interface MemberController {
 	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView addMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView removeMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	public ModelAndView updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

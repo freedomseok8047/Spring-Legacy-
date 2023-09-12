@@ -1,4 +1,4 @@
-package com.spring.member.controller;
+package com.spring.member.controller.ljs230912;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
-import com.spring.member.service.MemberService;
-import com.spring.member.service.MemberServiceImpl;
+import com.spring.member.service.ljs230912.MemberService;
+import com.spring.member.service.ljs230912.MemberServiceImpl;
 import com.spring.member.vo.MemberVO;
 //동네 1-1,
 public class MemberControllerImpl extends MultiActionController implements MemberController {
@@ -63,6 +63,16 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 		return mav;
 	}
 	
+	@Override
+	public ModelAndView updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String id=request.getParameter("id");
+		memberService.updateMember(id);
+		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
+		return mav;
+	}	
+
+	
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		ModelAndView mav = new ModelAndView();
@@ -101,6 +111,7 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 			fileName = fileName.substring(fileName.lastIndexOf("/"), fileName.length());
 		}
 		return fileName;
-	}	
+	}
+
 
 }

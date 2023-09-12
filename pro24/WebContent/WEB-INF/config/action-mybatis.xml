@@ -21,6 +21,7 @@
 	
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 참조, 포함 , DI -->
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation"
 			value="classpath:mybatis/model/modelConfig.xml" />
@@ -32,7 +33,7 @@
 		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 
-
+	<!-- 동네 3번 : 데이터 점근을 위한 객체들의 모음집  -->
 	<bean id="memberDAO"
 		class="com.spring.member.dao.MemberDAOImpl">
 		<property name="sqlSession" ref="sqlSession"></property>

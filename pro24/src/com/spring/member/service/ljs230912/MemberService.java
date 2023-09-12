@@ -1,4 +1,4 @@
-package com.spring.member.service;
+package com.spring.member.service.ljs230912;
 
 import java.util.List;
 
@@ -10,5 +10,6 @@ public interface MemberService {
 	 public List listMembers() throws DataAccessException;
 	 public int addMember(MemberVO membeVO) throws DataAccessException;
 	 public int removeMember(String id) throws DataAccessException;
+	 public int updateMember(String id) throws DataAccessException;
 
 }
