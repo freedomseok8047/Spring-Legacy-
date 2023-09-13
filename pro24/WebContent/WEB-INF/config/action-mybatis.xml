@@ -35,7 +35,7 @@
 
 	<!-- 동네 3번 : 데이터 점근을 위한 객체들의 모음집  -->
 	<bean id="memberDAO"
-		class="com.spring.member.dao.MemberDAOImpl">
+		class="com.spring.member.dao.ljs230912.MemberDAOImpl"> <!-- /3/ ljs230912 추가함 -->
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
 

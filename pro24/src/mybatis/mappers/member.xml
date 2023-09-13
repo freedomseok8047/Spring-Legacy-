@@ -40,7 +40,7 @@
 	    where id = 'hong'
 	 ]]>
 	 </select> 
-	 
+	 <!-- 한 아이디로 전체 회원정보 조회하는 sql 있어서 재사용 할까 -->
 	<select id="selectMemberById" resultType="memberVO"  parameterType="String" >
       <![CDATA[
          select * from t_member
@@ -57,10 +57,18 @@
       ]]>
     </select>
     
+  <!--   <select id="modMember" resultMap="memResult"  parameterType="int" >
+      <![CDATA[
+         select * from t_member
+         where
+         id = #{id}			
+      ]]>
+    </select> -->
+    
      <insert id="insertMember"  parameterType="memberVO">
 		<![CDATA[
-		 insert into t_member(id,pwd, name, email)
-		 values(#{id}, #{pwd}, #{name}, #{email})
+		 insert into t_member(id,pwd, name, email, joinDate)
+		 values(#{id}, #{pwd}, #{name}, #{email}, sysdate)
 		]]>      
 	</insert>
 	

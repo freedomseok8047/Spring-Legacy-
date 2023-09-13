@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
-
+//1/import 변경 
 import com.spring.member.service.ljs230912.MemberService;
 import com.spring.member.service.ljs230912.MemberServiceImpl;
 import com.spring.member.vo.MemberVO;
@@ -66,19 +66,32 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 	
 	@Override
 	public ModelAndView modMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		String id=request.getParameter("id");
-		request.setAttribute("user_id", id);
-		ModelAndView mav = new ModelAndView("redirect:/member_ljs230912/modMember.jsp");
-		return mav;	
+		
+		//mav 에 데이터를 넣는 구조 , 회원가입에서 복붙 
+		String viewName = getViewName(request);
+		ModelAndView mav = new ModelAndView();
+		System.out.println("2.viewName(수정폼) 뭐야? : " + viewName);
+		String id=request.getParameter("id"); //id를 가져오는 구조, 삭제에서 복붙 
+		mav.addObject("user_id", id);  //mav 에 데이터를 넣는 구조 , 회원가입에서 복붙 
+		System.out.println("3.id 뭐야? : " + id);
+		//추가, 해당 아이디로 , 정보를 가져오기 
+		//조회된 한 회원의 정보를 담을 임시 인스턴스 : memberOne
+		//getOneMember : 서비스 아직 없는 메서드 임의로 추가 
+		//외주 , 서비스 동네 2번 인터페이스와 클래스에서 정의 해야함 
+		MemberVO memberOne = memberService.getOneMember(id);
+		mav.addObject("member", memberOne); 
+		mav.setViewName(viewName);
+		return mav;
 	}
 
 	
 	@Override
 	public ModelAndView updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		String id=request.getParameter("id");
-		memberService.updateMember(id);
+		MemberVO memberVO = new MemberVO();
+		bind(request, memberVO);
+		int result = 0;
+		result = memberService.updateMember(memberVO);
 		ModelAndView mav = new ModelAndView("redirect:/member_ljs230912/listMembers.do");
 		return mav;
 	}	
@@ -87,6 +100,7 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		ModelAndView mav = new ModelAndView();
+		System.out.println("1.viewName(회원가입) 뭐야? : " + viewName);
 		mav.setViewName(viewName);
 		return mav;
 	}

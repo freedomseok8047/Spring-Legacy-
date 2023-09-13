@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
+//2/import 변경 
 import com.spring.member.dao.ljs230912.MemberDAO;
 import com.spring.member.vo.MemberVO;
 
@@ -27,7 +27,15 @@ public class MemberServiceImpl  implements MemberService{
 	      // 동네 3번 4번 갓다가 DB찍고 돌아옴
 	      return membersList;
 	   }
-
+	   @Override
+		public MemberVO getOneMember(String id) throws DataAccessException {
+		   MemberVO memberVO = null;
+		   // 동네 3번에 , dao 외주 주기 
+		   // 없는 메서드 동네 3번에서 정의 : selectOneMember()
+		   memberVO = memberDAO.selectOneMember(id);
+		   return memberVO;
+	   } 
+		
 	   @Override
 	   public int addMember(MemberVO memberVO) throws DataAccessException {
 	     return memberDAO.insertMember(memberVO);
@@ -40,7 +48,9 @@ public class MemberServiceImpl  implements MemberService{
 	   }
 
 	@Override
-	public int updateMember(String id) throws DataAccessException {
-		return memberDAO.updateMember(id);
+	public int updateMember(MemberVO membeVO) throws DataAccessException {
+		return memberDAO.updateMember(membeVO);
 	}
+
+
 }
