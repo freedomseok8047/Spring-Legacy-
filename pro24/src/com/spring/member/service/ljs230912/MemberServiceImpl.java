@@ -48,8 +48,8 @@ public class MemberServiceImpl  implements MemberService{
 	   }
 
 	@Override
-	public int updateMember(MemberVO membeVO) throws DataAccessException {
-		return memberDAO.updateMember(membeVO);
+	public int updateMember(MemberVO memberVO) throws DataAccessException {
+		return memberDAO.updateMember(memberVO);
 	}
 
 

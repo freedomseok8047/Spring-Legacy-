@@ -14,7 +14,9 @@ public interface MemberController {
 	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView addMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView removeMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	//수정 폼 여는 로직
 	public ModelAndView modMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	//실제 수정해서 결과 뷰에 반영하는 로직 
 	public ModelAndView updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 }

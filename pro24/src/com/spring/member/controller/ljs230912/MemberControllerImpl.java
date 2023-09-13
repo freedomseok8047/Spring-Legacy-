@@ -54,7 +54,20 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 		ModelAndView mav = new ModelAndView("redirect:/member_ljs230912/listMembers.do");
 		return mav;
 	}
-	
+	//수정폼, -> 변경된 내용가져와서 -> MemberVO 박스에 담아서 전달
+	@Override
+	public ModelAndView updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		MemberVO memberVO = new MemberVO();
+		bind(request, memberVO);
+		int result = 0;
+		//동네 2번으로 외주 주기 
+		//동네 2번에서 updateMember 정의해야함
+		result = memberService.updateMember(memberVO);
+		ModelAndView mav = new ModelAndView("redirect:/member_ljs230912/listMembers.do");
+		return mav;
+	}	
+
 	@Override
 	public ModelAndView removeMember(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
@@ -83,18 +96,6 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 		mav.setViewName(viewName);
 		return mav;
 	}
-
-	
-	@Override
-	public ModelAndView updateMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		MemberVO memberVO = new MemberVO();
-		bind(request, memberVO);
-		int result = 0;
-		result = memberService.updateMember(memberVO);
-		ModelAndView mav = new ModelAndView("redirect:/member_ljs230912/listMembers.do");
-		return mav;
-	}	
 
 	
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
