@@ -11,8 +11,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.member.vo.MemberVO;
 
 public interface MemberController {
-	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView addMember(@ModelAttribute("info") MemberVO memberVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView removeMember(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	//매서드 명세표 -> 한눈에 알수 있음
+		// 어떤 메서드가 들어갓고 어떤 매서드가 더 필요한지 한눈에 확인 가능 
+		public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception;
+		public ModelAndView addMember(@ModelAttribute("info") MemberVO memberVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
+		public ModelAndView removeMember(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+		public ModelAndView modMember(@RequestParam("id") String id,HttpServletRequest request, HttpServletResponse response) throws Exception;
+		public ModelAndView updateMember(@ModelAttribute("memberVO") MemberVO memberVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
+		
 }

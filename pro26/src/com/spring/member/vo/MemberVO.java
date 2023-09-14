@@ -3,7 +3,7 @@ package com.spring.member.vo;
 import java.sql.Date;
 
 import org.springframework.stereotype.Component;
-
+//시스템에 빈으로 등록하는 부분 
 @Component("memberVO")
 public class MemberVO {
 	private String id;
