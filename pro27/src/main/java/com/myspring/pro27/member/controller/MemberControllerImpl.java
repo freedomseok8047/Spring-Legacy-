@@ -151,5 +151,37 @@ public class MemberControllerImpl   implements MemberController {
 		return viewName;
 	}
 
+	@Override
+	@RequestMapping(value = "/member/modMember.do", method =  RequestMethod.GET)
+	public ModelAndView modMember(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String viewName = getViewName(request);
+		ModelAndView mav = new ModelAndView();
+		System.out.println("2.viewName(수정폼) 뭐야? : " + viewName);
+		mav.addObject("user_id", id);  //mav 에 데이터를 넣는 구조 , 회원가입에서 복붙 
+		System.out.println("3.id 뭐야? : " + id);
+		MemberVO memberOne = memberService.getOneMember(id);
+		mav.addObject("member", memberOne); 
+		mav.setViewName(viewName);
+		return mav;
+	}
+
+	@Override
+	@RequestMapping(value = "/member/updateMember.do", method =  RequestMethod.POST)
+	public ModelAndView updateMember(@ModelAttribute("memberVO") MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		request.setCharacterEncoding("utf-8");
+		/*
+		 * MemberVO memberVO = new MemberVO(); 
+		 * bind(request, memberVO);
+		 */
+		int result = 0;
+		//동네 2번으로 외주 주기 
+		//동네 2번에서 updateMember 정의해야함
+		result = memberService.updateMember(memberVO);
+		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
+		return mav;
+	}
+
 
 }

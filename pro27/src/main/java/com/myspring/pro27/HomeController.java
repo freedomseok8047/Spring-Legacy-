@@ -20,7 +20,7 @@ public class HomeController {
   /**
   * Simply selects the home view to render by returning its name.
   */
-  @RequestMapping(value = "/ljs", method = RequestMethod.GET)
+  @RequestMapping(value = "/", method = RequestMethod.GET)
   public String home(Locale locale, Model model) {
     logger.info("Welcome home! The client locale is {}.", locale);
     //나중에 , 파일명에서 , 중복파일 피하기 위해서 사용하는 네이밍 기법 중 하나인데

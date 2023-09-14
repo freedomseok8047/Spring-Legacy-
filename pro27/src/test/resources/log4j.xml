@@ -36,6 +36,7 @@
 	<root>
 		<priority value="info" />
 		<appender-ref ref="console" />
+		<appender-ref ref="dailFileAppender">
 	</root>
 	
 </log4j:configuration>
