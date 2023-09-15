@@ -17,7 +17,7 @@
 <body>
 <table border=0  width="100%">
   <tr>
-     <td>
+     <td> <!-- 뷰에서 서버로 매칭 주소르 a 링크로 전달  -->
 		<a href="${contextPath}/main.do">
 			<img src="${contextPath}/resources/image/duke_swing.gif"  />
 		</a>
@@ -27,14 +27,14 @@
      </td>
      
      <td>
-       <!-- <a href="#"><h3>로그인</h3></a> -->
+       <%-- <a href="${contextPath}/memb_ljs0915/loginForm.do"><h3>로그인</h3></a> --%>
        <c:choose>
           <c:when test="${isLogOn == true  && member!= null}">
             <h3>환영합니다. ${member.name }님!</h3>
-            <a href="${contextPath}/member/logout.do"><h3>로그아웃</h3></a>
+            <a href="${contextPath}/memb_ljs0915/logout.do"><h3>로그아웃</h3></a>
           </c:when>
           <c:otherwise>
-	        <a href="${contextPath}/member/loginForm.do"><h3>로그인</h3></a>
+	        <a href="${contextPath}/memb_ljs0915/loginForm.do"><h3>로그인</h3></a>
 	      </c:otherwise>
 	   </c:choose>     
      </td>

@@ -35,7 +35,9 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override
 	public MemberVO loginById(MemberVO memberVO) throws DataAccessException{
+		//클라이언트 -> 서버 : 현재 박스에는 아디와 패스워드 만!
 		  MemberVO vo = sqlSession.selectOne("mapper.member.loginById",memberVO);
+		//디비 찍고 , -> 해당유저의 모든 정보를 가져 옴 , 박스에는 모든 데이터 들어있음
 		return vo;
 	}
 

@@ -35,9 +35,9 @@ public class MemberControllerImpl   implements MemberController {
 	@Override
 	@RequestMapping(value="/member/listMembers.do" ,method = RequestMethod.GET)
 	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = getViewName(request);
-//		String viewName = (String)request.getAttribute("viewName");
-		//System.out.println("viewName: " +viewName);
+		//String viewName = getViewName(request);
+		String viewName = (String)request.getAttribute("viewName");
+		System.out.println("인터셉터를 이용해서 viewName 사용하기: " +viewName);
 //		logger.info("viewName: "+ viewName);
 //		logger.debug("viewName: "+ viewName);
 		List membersList = memberService.listMembers();
@@ -82,15 +82,24 @@ public class MemberControllerImpl   implements MemberController {
 	public ModelAndView login(@ModelAttribute("member") MemberVO member,
 				              RedirectAttributes rAttr,
 		                       HttpServletRequest request, HttpServletResponse response) throws Exception {
+	//처음 member, 클라이언트로 부터 입력받은 id,pw만 있음 
 	ModelAndView mav = new ModelAndView();
+	//로그인이 잘 된경우, 해당 유저의 나머지 정보를 다 가지고 옴
 	memberVO = memberService.login(member);
+	//로그인 후, 해당 회원의 정보를 다 가지고 있음 
 	if(memberVO != null) {
+		    //서버의 세션의 인스턴스르 가지로 오는 로직
 		    HttpSession session = request.getSession();
+		    //세션에 맴버르 등록
 		    session.setAttribute("member", memberVO);
+		    //세션에 상태변수에, isLogOn -> true 기록
 		    session.setAttribute("isLogOn", true);
+		    //로그인 후, 결과 페이지로  리다이렉트 이동 시키기
 		    mav.setViewName("redirect:/member/listMembers.do");
 	}else {
+		//로그인 실패시, 해당 result 라는 키로 , loginFailed라는 문자열 추가 
 		    rAttr.addAttribute("result","loginFailed");
+		    //다시 로그인 폼으로
 		    mav.setViewName("redirect:/member/loginForm.do");
 	}
 	return mav;
@@ -100,6 +109,7 @@ public class MemberControllerImpl   implements MemberController {
 	@RequestMapping(value = "/member/logout.do", method =  RequestMethod.GET)
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
+		//서버 세션의 키부분 삭제 
 		session.removeAttribute("member");
 		session.removeAttribute("isLogOn");
 		ModelAndView mav = new ModelAndView();
@@ -111,9 +121,12 @@ public class MemberControllerImpl   implements MemberController {
 	private ModelAndView form(@RequestParam(value= "result", required=false) String result,
 						       HttpServletRequest request, 
 						       HttpServletResponse response) throws Exception {
-		//String viewName = getViewName(request);
-		String viewName = (String)request.getAttribute("viewName");
+		System.out.println("*Form.do 실행여부 확인 ====================");
+		String viewName = getViewName(request);
+		//String viewName = (String)request.getAttribute("viewName");
+		System.out.println("viewName 확인 ====================" + viewName);
 		ModelAndView mav = new ModelAndView();
+		System.out.println("result 확인 ====================" + result);
 		mav.addObject("result",result);
 		mav.setViewName(viewName);
 		return mav;
