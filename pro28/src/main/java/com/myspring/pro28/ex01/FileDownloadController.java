@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /*@Controller*/
 public class FileDownloadController {
-	//다운로드 위치, 팡리이미지 메모리에 읽어서 출력 대상 : 웹 브라우저
+	//다운로드 위치, 파일 이미지 메모리에 읽어서 출력 대상 : 웹 브라우저
 		// 출력대상, 보통은 디비에 경로를 저장 (현재는 로컬의 c드라이브, 보통 미디어 서버 url) 
 		// c드라이브 임시, 파일 이미지 저장소
 	private static String CURR_IMAGE_REPO_PATH = "c:\\spring\\image_repo";
