@@ -41,16 +41,18 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.loginById(memberVO);
 	}
 
-	@Override
-	public MemberVO getOneMember(String id) throws DataAccessException {
-		MemberVO memberVO = null;
-		   memberVO = memberDAO.selectOneMember(id);
-		   return memberVO;
-	}
-
-	@Override
-	public int updateMember(MemberVO memberVO) throws DataAccessException {
-		return memberDAO.updateMember(memberVO);
-	}
+	  // 한 회원의 정보 가져오기 추가 부분. 
+	   @Override
+		public MemberVO getOneMember(String id) throws DataAccessException {
+		   MemberVO membervo = null;
+		   // 실제 작업, 동네 3번, dao 외주 주기. 
+		   membervo = memberDAO.selectOneMember(id);
+			return membervo;
+		}
+//추가, 수정 반영하기 
+	   @Override
+		public int updateMember(MemberVO memberVO) throws DataAccessException {
+		   return memberDAO.updateMember(memberVO);
+		}
 
 }

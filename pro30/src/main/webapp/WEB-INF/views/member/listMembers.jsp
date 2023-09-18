@@ -22,8 +22,8 @@
       <td><b>이름</b></td>
       <td><b>이메일</b></td>
       <td><b>가입일</b></td>
-      <td><b>삭제</b></td>
       <td><b>수정</b></td>
+      <td><b>삭제</b></td>
    </tr>
    
  <c:forEach var="member" items="${membersList}" >     
@@ -33,8 +33,8 @@
       <td>${member.name}</td>
       <td>${member.email}</td>
       <td>${member.joinDate}</td>
-      <td><a href="${contextPath}/member/removeMember.do?id=${member.id}">삭제하기</a></td>
-      <td><a href="${contextPath}/member/modMember.do?id=${member.id}">수정하기</a></td>
+      <td><a href="${contextPath}/member/modMember.do?id=${member.id }">수정폼가기</a></td>
+      <td><a href="${contextPath}/member/removeMember.do?id=${member.id }">삭제하기</a></td>
     </tr>
   </c:forEach>   
 </table>
