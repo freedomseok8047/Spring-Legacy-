@@ -15,6 +15,8 @@ import com.myspring.pro30.board.vo.ImageVO;
 
 
 @Service("boardService")
+//íŠ¸ëœì ì…˜ì´ ìˆë‹¤ë©´ ê¸°ì¡´êº¼ ì‚¬ìš©, ì—†ë‹¤ë©´ ìƒˆë¡œ ìƒì„±
+//ì„œë¹„ìŠ¤ì—ì„œ 2ê°œì˜ sql êµ¬ë¬¸ì„ ë¬¶ì–´ì„œ ì“´ë‹¤.
 @Transactional(propagation = Propagation.REQUIRED)
 public class BoardServiceImpl  implements BoardService{
 	@Autowired
@@ -26,13 +28,19 @@ public class BoardServiceImpl  implements BoardService{
 	}
 
 	
-	//´ÜÀÏ ÀÌ¹ÌÁö Ãß°¡ÇÏ±â
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï±ï¿½
 	@Override
 	public int addNewArticle(Map articleMap) throws Exception{
 		return boardDAO.insertNewArticle(articleMap);
 	}
 	
-	 //´ÙÁß ÀÌ¹ÌÁö Ãß°¡ÇÏ±â
+	@Override
+	public int replyArticle(Map articleMap) throws Exception{
+		return boardDAO.insertReplyNewArticle(articleMap);
+	}
+	
+	
+	 //ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï±ï¿½
 	/*
 	@Override
 	public int addNewArticle(Map articleMap) throws Exception{
@@ -43,7 +51,7 @@ public class BoardServiceImpl  implements BoardService{
 	}
 	*/
 	/*
-	//´ÙÁß ÆÄÀÏ º¸ÀÌ±â
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½
 	@Override
 	public Map viewArticle(int articleNO) throws Exception {
 		Map articleMap = new HashMap();
@@ -56,14 +64,15 @@ public class BoardServiceImpl  implements BoardService{
    */
 	
 	
-	 //´ÜÀÏ ÆÄÀÏ º¸ÀÌ±â
+	 //ë‹¨ì¼ ì´ë¯¸ì§€, ìƒì„¸í˜ì´ì§€ ë³´ê¸° 
 	@Override
 	public ArticleVO viewArticle(int articleNO) throws Exception {
+		// ë™ë„¤ 2ë²ˆ -> ë™ë„¤ 3ë²ˆìœ¼ë¡œ ì˜ˆ) articleNO=4
 		ArticleVO articleVO = boardDAO.selectArticle(articleNO);
 		return articleVO;
 	}
 	
-	
+	//ë‹¨ì¼ ì´ë¯¸ì§€, ê¸€ ìˆ˜ì •ì‹œ ë¡œì§ 
 	@Override
 	public void modArticle(Map articleMap) throws Exception {
 		boardDAO.updateArticle(articleMap);

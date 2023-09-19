@@ -7,6 +7,7 @@ import java.sql.Date;
 import org.springframework.stereotype.Component;
 
 @Component("articleVO")
+// 시스템이 시작시 , 참조형 변수 이름으로 빈 자동 등록.
 public class ArticleVO {
 	private int  level;
 	private int articleNO;
@@ -19,7 +20,7 @@ public class ArticleVO {
 	
 	
 	public ArticleVO() {
-		System.out.println("ArticleVO ������");
+		System.out.println("ArticleVO 생성자");
 	}
 
 	public int getArticleNO() {
@@ -68,8 +69,9 @@ public class ArticleVO {
 	}
 
 	public void setImageFileName(String imageFileName) {
-		try {
+		try {// 이미지가 있을 때 -> null이나 0이 아닐때 
 			if(imageFileName!= null && imageFileName.length()!=0) {
+				//이미지 파일의 이름을 utf-8로 인코딩, 한글 안깨지게 하려고
 				this.imageFileName = URLEncoder.encode(imageFileName,"UTF-8");
 			}
 		} catch (UnsupportedEncodingException e) {

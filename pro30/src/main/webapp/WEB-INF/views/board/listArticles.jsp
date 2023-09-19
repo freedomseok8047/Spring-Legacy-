@@ -18,10 +18,16 @@
   <title>글목록창</title>
 </head>
 <script>
+//매개변수가 3개이고, 첫번째 로그인 했을 경우를 알려주는 상태변수
+//2번째, 로그인시 이동할 페이지 
+//3번째, 로그인X시 이동할 페이지 
 	function fn_articleForm(isLogOn,articleForm,loginForm){
 	  if(isLogOn != '' && isLogOn != 'false'){
+		  //게시글 작성 폼
 	    location.href=articleForm;
 	  }else{
+		  //로그인 안되면, 로그인 후 글 작성해 주시요 경고창 알리고,
+		  //로그인 폼으로 이동 
 	    alert("로그인 후 글쓰기가 가능합니다.")
 	    location.href=loginForm+'?action=/board/articleForm.do';
 	  }
@@ -35,6 +41,8 @@
      <td >제목</td>
      <td >작성일</td>
   </tr>
+  <!-- 게시글이 있다면 --> 
+  <!-- varStatus, 인덱스오 비슷한데, 갯수를 1부터 숫자세기 용도 -->
 <c:choose>
   <c:when test="${articlesList ==null }" >
     <tr  height="10">
@@ -45,21 +53,36 @@
       </td>  
     </tr>
   </c:when>
+  
   <c:when test="${articlesList !=null }" >
+  
     <c:forEach  var="article" items="${articlesList }" varStatus="articleNum" >
      <tr align="center">
 	<td width="5%">${articleNum.count}</td>
 	<td width="10%">${article.id }</td>
 	<td align='left'  width="35%">
 	  <span style="padding-right:30px"></span>
+	   <!-- article.level 클수록 하위 계층으로 가고 , 0이 부모글, 레벨 1 , --> 
+	   <!-- 예) 게시글 1의 0 -> 답변글 레벨1 -> 1번 답변의 답변글 레벨2  -->
+	   <!-- 답글시 뷰에서 왼쪽으로 들여쓰기 20px 만큼 -->
+	   <%-- 클라 뷰 목록에서 해당 게시글의 제목 클릭시 이동할 링크에 ? 파라미터로 전달 된 
+	         요소 : articleNO=${article.articleNO}, 서버에 게시글 번호를 전달 
+	         ex).do?articleNO=4
+	         그 게시글 번호의 정보를 , 동네 1~4 순회해서, 해당 뷰에 게시글 정보를 출력
+	         예)수정시, 수정폼에 회원의 정보를 db에서 가져와야함 --%>
+	         <%-- 게시글이 답글이 아닌경우, 부모글이라고 표현. --%>
 	   <c:choose>
+	   
 	      <c:when test='${article.level > 1 }'>  
+	      
 	         <c:forEach begin="1" end="${article.level }" step="1">
 	              <span style="padding-left:20px"></span>    
 	         </c:forEach>
 	         <span style="font-size:12px;">[답변]</span>
+	         
                    <a class='cls1' href="${contextPath}/board/viewArticle.do?articleNO=${article.articleNO}">${article.title}</a>
 	          </c:when>
+	        
 	          <c:otherwise>
 	            <a class='cls1' href="${contextPath}/board/viewArticle.do?articleNO=${article.articleNO}">${article.title }</a>
 	          </c:otherwise>
